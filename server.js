@@ -251,7 +251,11 @@ app.get('/api/health', (req, res) => {
   });
 });
 
+<<<<<<< HEAD
 async function runPythonML(imageData, commodity, district, additionalImages = []) {
+=======
+async function runPythonML(imageData, commodity, district) {
+>>>>>>> bf43a2d8074be319d22b9f9093bbf0fcfff833a6
   const pythonCmd = path.join(__dirname, '.venv', 'Scripts', 'python.exe');
 
   return new Promise((resolve, reject) => {
@@ -306,7 +310,11 @@ async function runPythonML(imageData, commodity, district, additionalImages = []
     pythonProcess.stdin.on('error', (error) => {
       reject(new Error(`Could not send the image to the grading engine: ${error.message}`));
     });
+<<<<<<< HEAD
     pythonProcess.stdin.end(JSON.stringify({ image: imageData, additionalImages }));
+=======
+    pythonProcess.stdin.end(imageData);
+>>>>>>> bf43a2d8074be319d22b9f9093bbf0fcfff833a6
   });
 }
 
@@ -326,7 +334,10 @@ app.post('/api/analyze', async (req, res) => {
     const {
       image,
       previewImage,
+<<<<<<< HEAD
       additionalImages = [],
+=======
+>>>>>>> bf43a2d8074be319d22b9f9093bbf0fcfff833a6
       commodity = 'auto',
       district = '',
       market = 'All Markets'
@@ -384,8 +395,12 @@ app.post('/api/analyze', async (req, res) => {
       gradingResult = await runPythonML(
         image,
         selectedCommodity,
+<<<<<<< HEAD
         district,
         Array.isArray(additionalImages) ? additionalImages.slice(0, 4) : []
+=======
+        district
+>>>>>>> bf43a2d8074be319d22b9f9093bbf0fcfff833a6
       );
     } catch (mlError) {
       console.error('====================================');
@@ -544,6 +559,7 @@ app.post('/api/analyze', async (req, res) => {
     // Shelf life based on trained-model grade
     // ----------------------------------------------------------
 
+<<<<<<< HEAD
     const shelfLifeDetails = estimateShelfLife({
       commodity: finalCommodity,
       grade,
@@ -551,6 +567,27 @@ app.post('/api/analyze', async (req, res) => {
     });
 
     const shelfLife = shelfLifeDetails.label;
+=======
+    let shelfLife;
+
+    if (finalCommodity === 'Tomato') {
+      if (grade === 'A') {
+        shelfLife = '5 - 7 Days';
+      } else if (grade === 'B') {
+        shelfLife = '3 - 4 Days';
+      } else {
+        shelfLife = '1 - 2 Days';
+      }
+    } else {
+      if (grade === 'A') {
+        shelfLife = '14 - 21 Days';
+      } else if (grade === 'B') {
+        shelfLife = '7 - 10 Days';
+      } else {
+        shelfLife = '3 - 5 Days';
+      }
+    }
+>>>>>>> bf43a2d8074be319d22b9f9093bbf0fcfff833a6
 
     // ----------------------------------------------------------
     // STEP 6:
@@ -617,8 +654,11 @@ app.post('/api/analyze', async (req, res) => {
 
       shelfLife,
 
+<<<<<<< HEAD
       shelfLifeDetails,
 
+=======
+>>>>>>> bf43a2d8074be319d22b9f9093bbf0fcfff833a6
       confidence,
 
       description,
@@ -726,6 +766,7 @@ function parseMandiPrice(value) {
   return Number.isFinite(price) && price >= 0 ? price : null;
 }
 
+<<<<<<< HEAD
 // ============================================================
 // Shelf life estimation
 // ============================================================
@@ -853,6 +894,8 @@ function buildGradePrices(prices) {
   };
 }
 
+=======
+>>>>>>> bf43a2d8074be319d22b9f9093bbf0fcfff833a6
 function parseMandiDate(value) {
   const dateText = String(value ?? '').trim();
   const dayFirstDate = dateText.match(/^(\d{1,2})[/-](\d{1,2})[/-](\d{4})$/);
@@ -873,8 +916,11 @@ app.get('/api/market-prices', async (req, res) => {
   );
   const district = String(req.query.district || '');
   const state = MANDI_DISTRICT_STATES[district];
+<<<<<<< HEAD
   const requestedGrade = String(req.query.grade || '').trim().toUpperCase();
   const selectedGrade = SUPPORTED_GRADES.includes(requestedGrade) ? requestedGrade : null;
+=======
+>>>>>>> bf43a2d8074be319d22b9f9093bbf0fcfff833a6
 
   if (!commodity || !state) {
     return res.status(400).json({
@@ -946,9 +992,12 @@ app.get('/api/market-prices', async (req, res) => {
         fetchedAt: new Date().toISOString(),
         dataDate: null,
         summary: null,
+<<<<<<< HEAD
         gradePrices: null,
         selectedGrade,
         selectedGradePrice: null,
+=======
+>>>>>>> bf43a2d8074be319d22b9f9093bbf0fcfff833a6
         comparisons: [],
         trends: [],
         message: 'No reported mandi prices were found for this commodity and district.'
@@ -964,7 +1013,10 @@ app.get('/api/market-prices', async (req, res) => {
       modal: toKg(average(latestRecords.map((record) => record.modal))),
       max: toKg(Math.max(...latestRecords.map((record) => record.max)))
     };
+<<<<<<< HEAD
     const gradePrices = buildGradePrices(summary);
+=======
+>>>>>>> bf43a2d8074be319d22b9f9093bbf0fcfff833a6
 
     const marketGroups = new Map();
     for (const record of latestRecords) {
@@ -980,7 +1032,10 @@ app.get('/api/market-prices', async (req, res) => {
         max: toKg(Math.max(...marketRecords.map((record) => record.max))),
         distance: '—'
       }))
+<<<<<<< HEAD
       .map((market) => ({ ...market, gradePrices: buildGradePrices(market) }))
+=======
+>>>>>>> bf43a2d8074be319d22b9f9093bbf0fcfff833a6
       .sort((left, right) => right.modal - left.modal)
       .map((market, index) => ({ ...market, isBest: index === 0 }));
 
@@ -1011,11 +1066,14 @@ app.get('/api/market-prices', async (req, res) => {
       fetchedAt: new Date().toISOString(),
       dataDate: new Date(latestTimestamp).toISOString().slice(0, 10),
       summary,
+<<<<<<< HEAD
       gradePrices,
       gradeBasis:
         'Grade A is estimated between the modal and maximum reported rate, Grade B around the modal rate, and Grade C between the minimum and modal rate.',
       selectedGrade,
       selectedGradePrice: selectedGrade ? gradePrices[selectedGrade] : null,
+=======
+>>>>>>> bf43a2d8074be319d22b9f9093bbf0fcfff833a6
       comparisons,
       trends
     });
@@ -1306,4 +1364,8 @@ async function startServer() {
 startServer().catch((error) => {
   console.error('Could not start AgriSense AI:', error);
   process.exitCode = 1;
+<<<<<<< HEAD
 });
+=======
+});
+>>>>>>> bf43a2d8074be319d22b9f9093bbf0fcfff833a6

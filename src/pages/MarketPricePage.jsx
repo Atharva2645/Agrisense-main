@@ -8,6 +8,7 @@ import {
 export const MarketPricePage = ({
   initialCommodity = '',
   initialDistrict = '',
+<<<<<<< HEAD
   initialGrade = 'B',
   commodityLocked = false,
   onNavigate,
@@ -16,6 +17,13 @@ export const MarketPricePage = ({
   const [commodity, setCommodity] = useState(initialCommodity);
   const [district, setDistrict] = useState(initialDistrict);
   const [grade, setGrade] = useState(GRADES.includes(initialGrade) ? initialGrade : 'B');
+=======
+  commodityLocked = false,
+  onNavigate,
+}) => {
+  const [commodity, setCommodity] = useState(initialCommodity);
+  const [district, setDistrict] = useState(initialDistrict);
+>>>>>>> bf43a2d8074be319d22b9f9093bbf0fcfff833a6
   const [marketData, setMarketData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -66,10 +74,14 @@ export const MarketPricePage = ({
       ? marketData
       : null;
   const summary = currentMarketData?.summary;
+<<<<<<< HEAD
   const gradePrices = currentMarketData?.gradePrices || null;
   const selectedGradePrice = gradePrices?.[grade] || null;
   const comparisons = currentMarketData?.comparisons || [];
   const gradeLabel = { A: 'Premium', B: 'Standard', C: 'Economy' };
+=======
+  const comparisons = currentMarketData?.comparisons || [];
+>>>>>>> bf43a2d8074be319d22b9f9093bbf0fcfff833a6
   const displayPrice = (price) => price == null ? '—' : Number(price).toFixed(2);
   const reportDate = currentMarketData?.dataDate
     ? new Date(`${currentMarketData.dataDate}T00:00:00Z`).toLocaleDateString('en-IN', {
@@ -93,7 +105,11 @@ export const MarketPricePage = ({
             <span>Reported APMC Mandi Prices</span>
           </div>
           <h1 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mt-0.5 font-['Space_Grotesk']">
+<<<<<<< HEAD
             {commodity} Grade {grade} Prices — {district}
+=======
+            {commodity} Market Prices — {district}
+>>>>>>> bf43a2d8074be319d22b9f9093bbf0fcfff833a6
           </h1>
           <p className="text-xs text-slate-500 font-medium">
             Latest available market reports · AGMARKNET via data.gov.in
@@ -127,7 +143,11 @@ export const MarketPricePage = ({
 
       {/* Top Filter Bar */}
       <div className="bg-white p-4 sm:p-5 rounded-3xl border border-slate-200/80 shadow-xs space-y-4">
+<<<<<<< HEAD
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 items-end">
+=======
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 items-end">
+>>>>>>> bf43a2d8074be319d22b9f9093bbf0fcfff833a6
           {/* Commodity */}
           <div>
             <label className="block text-[11px] font-extrabold text-slate-700 uppercase tracking-wider mb-1.5">
@@ -181,6 +201,7 @@ export const MarketPricePage = ({
             </div>
           </div>
 
+<<<<<<< HEAD
           {/* Grade */}
           <div>
             <label className="block text-[11px] font-extrabold text-slate-700 uppercase tracking-wider mb-1.5">
@@ -270,6 +291,13 @@ export const MarketPricePage = ({
         Reported Mandi Benchmark (all grades)
       </h3>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 !mt-3">
+=======
+        </div>
+      </div>
+
+      {/* 3 Price Highlight Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+>>>>>>> bf43a2d8074be319d22b9f9093bbf0fcfff833a6
         {/* Min Price */}
         <div className="bg-white rounded-3xl p-5 border border-slate-200/80 shadow-xs text-center">
           <span className="text-xs font-extrabold text-slate-500 uppercase tracking-wider block">
@@ -345,13 +373,20 @@ export const MarketPricePage = ({
                     <th className="py-3 px-2 text-center">Min (₹/kg)</th>
                     <th className="py-3 px-2 text-center">Modal (₹/kg)</th>
                     <th className="py-3 px-2 text-center">Max (₹/kg)</th>
+<<<<<<< HEAD
                     <th className="py-3 px-2 text-center text-emerald-700">Grade {grade} (₹/kg)</th>
+=======
+>>>>>>> bf43a2d8074be319d22b9f9093bbf0fcfff833a6
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100 text-xs font-semibold text-slate-800">
                   {comparisons.length === 0 && (
                     <tr>
+<<<<<<< HEAD
                       <td colSpan="5" className="py-6 text-center text-slate-500">
+=======
+                      <td colSpan="4" className="py-6 text-center text-slate-500">
+>>>>>>> bf43a2d8074be319d22b9f9093bbf0fcfff833a6
                         No market records are available for this selection.
                       </td>
                     </tr>
@@ -382,9 +417,12 @@ export const MarketPricePage = ({
                           ₹{displayPrice(row.modal)}
                         </td>
                         <td className="py-3.5 px-2 text-center text-slate-600">₹{displayPrice(row.max)}</td>
+<<<<<<< HEAD
                         <td className="py-3.5 px-2 text-center font-black text-emerald-700 text-sm font-['Space_Grotesk']">
                           ₹{displayPrice(row.gradePrices?.[grade]?.typical)}
                         </td>
+=======
+>>>>>>> bf43a2d8074be319d22b9f9093bbf0fcfff833a6
                       </tr>
                     );
                   })}
@@ -393,7 +431,11 @@ export const MarketPricePage = ({
             </div>
 
             <p className="text-[11px] text-slate-400 pt-2 border-t border-slate-100 font-medium">
+<<<<<<< HEAD
               *Source prices are per quintal and converted to ₹/kg. The district modal value is an unweighted average of reported market modal prices. Grade A/B/C prices are estimates derived from each market's reported min–modal–max spread; distance is not provided.
+=======
+              *Source prices are per quintal and converted to ₹/kg. The district modal value is an unweighted average of reported market modal prices. The source's grade (for example, Local) is not mapped to the app's Grade A/B/C, and distance is not provided.
+>>>>>>> bf43a2d8074be319d22b9f9093bbf0fcfff833a6
             </p>
           </div>
         </div>

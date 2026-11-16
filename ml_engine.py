@@ -14,7 +14,11 @@ import torch
 # pyrefly: ignore [missing-import]
 from torchvision import models, transforms
 # pyrefly: ignore [missing-import]
+<<<<<<< HEAD
 from PIL import Image, ImageOps
+=======
+from PIL import Image
+>>>>>>> bf43a2d8074be319d22b9f9093bbf0fcfff833a6
 
 
 # ============================================================
@@ -215,8 +219,13 @@ def decode_image(raw_data):
 
     try:
 
+<<<<<<< HEAD
         image = ImageOps.exif_transpose(
             Image.open(io.BytesIO(image_bytes))
+=======
+        image = Image.open(
+            io.BytesIO(image_bytes)
+>>>>>>> bf43a2d8074be319d22b9f9093bbf0fcfff833a6
         ).convert("RGB")
 
     except Exception as e:
@@ -232,9 +241,15 @@ def decode_image(raw_data):
 # DETECT FRUIT
 # ============================================================
 
+<<<<<<< HEAD
 def detect_fruit(image, loaded_model=None):
 
     model, classes = loaded_model or load_fruit_detection_model()
+=======
+def detect_fruit(image):
+
+    model, classes = load_fruit_detection_model()
+>>>>>>> bf43a2d8074be319d22b9f9093bbf0fcfff833a6
 
     image_sample = np.asarray(
         image.convert("RGB").resize((224, 224)),
@@ -321,6 +336,7 @@ def detect_fruit(image, loaded_model=None):
     }
 
 
+<<<<<<< HEAD
 def detect_fruit_from_images(images):
     """Average fruit probabilities across several views of one produce lot."""
     if not images:
@@ -377,6 +393,8 @@ def detect_fruit_from_images(images):
     return result
 
 
+=======
+>>>>>>> bf43a2d8074be319d22b9f9093bbf0fcfff833a6
 # ============================================================
 # PREDICT GRADE
 # ============================================================
@@ -831,24 +849,35 @@ def generate_dynamic_description(
 def run_grading_pipeline(
     image_data,
     commodity_hint="auto",
+<<<<<<< HEAD
     district="Kolhapur",
     additional_image_data=None
+=======
+    district="Kolhapur"
+>>>>>>> bf43a2d8074be319d22b9f9093bbf0fcfff833a6
 ):
 
     image = decode_image(
         image_data
     )
+<<<<<<< HEAD
     additional_images = [
         decode_image(raw_image)
         for raw_image in (additional_image_data or [])[:4]
     ]
+=======
+>>>>>>> bf43a2d8074be319d22b9f9093bbf0fcfff833a6
 
     commodity = (
         commodity_hint
         or "auto"
     ).lower().strip()
 
+<<<<<<< HEAD
     detection = detect_fruit_from_images([image] + additional_images)
+=======
+    detection = detect_fruit(image)
+>>>>>>> bf43a2d8074be319d22b9f9093bbf0fcfff833a6
     detected_fruit = detection["fruit"]
     supported_commodities = [
         "apple",
@@ -1089,6 +1118,7 @@ def main():
                 "No image data received from Node.js."
             )
 
+<<<<<<< HEAD
         additional_images = []
         if input_data.startswith("{"):
             request_data = json.loads(input_data)
@@ -1098,6 +1128,8 @@ def main():
             # Keep compatibility with callers that send only the image data URL.
             image_data = input_data
 
+=======
+>>>>>>> bf43a2d8074be319d22b9f9093bbf0fcfff833a6
         commodity = os.environ.get(
             "AGRISENSE_COMMODITY",
             "auto"
@@ -1109,10 +1141,16 @@ def main():
         )
 
         result = run_grading_pipeline(
+<<<<<<< HEAD
             image_data,
             commodity,
             district,
             additional_images
+=======
+            input_data,
+            commodity,
+            district
+>>>>>>> bf43a2d8074be319d22b9f9093bbf0fcfff833a6
         )
 
         print(
@@ -1144,4 +1182,8 @@ def main():
 
 
 if __name__ == "__main__":
+<<<<<<< HEAD
     main()
+=======
+    main()
+>>>>>>> bf43a2d8074be319d22b9f9093bbf0fcfff833a6

@@ -386,7 +386,10 @@ export default function App() {
             analyzingPayload && (
               <AnalyzingPage
                 image={analyzingPayload.image}
+<<<<<<< HEAD
                 additionalImages={analyzingPayload.additionalImages || []}
+=======
+>>>>>>> bf43a2d8074be319d22b9f9093bbf0fcfff833a6
                 commodity={analyzingPayload.commodity}
                 district={analyzingPayload.district}
                 market={analyzingPayload.market}
@@ -548,8 +551,11 @@ export default function App() {
                 marketFilters.district
               }
 
+<<<<<<< HEAD
               initialGrade={marketFilters.grade}
 
+=======
+>>>>>>> bf43a2d8074be319d22b9f9093bbf0fcfff833a6
               commodityLocked={marketFilters.fromAnalysis}
 
               onNavigate={handleNavigate}
@@ -605,4 +611,8 @@ export default function App() {
 
     </div>
   );
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> bf43a2d8074be319d22b9f9093bbf0fcfff833a6

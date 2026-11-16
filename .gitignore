@@ -24,6 +24,10 @@ ml_engine_backup_*.py
 # ML datasets / archives
 *.zip
 data-set/
+<<<<<<< HEAD
 datasets/
 # Training image cache
 ml/.cache/
+=======
+datasets/
+>>>>>>> bf43a2d8074be319d22b9f9093bbf0fcfff833a6

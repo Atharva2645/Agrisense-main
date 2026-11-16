@@ -41,6 +41,7 @@ export const UploadPage = ({
   };
 
   const handleAddMoreImage = (e) => {
+<<<<<<< HEAD
     const files = Array.from(e.target.files || []);
     const availableSlots = 4 - additionalImages.length;
     files.slice(0, availableSlots).forEach((file) => {
@@ -51,6 +52,16 @@ export const UploadPage = ({
       reader.readAsDataURL(file);
     });
     e.target.value = '';
+=======
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setAdditionalImages((prev) => [...prev, reader.result]);
+      };
+      reader.readAsDataURL(file);
+    }
+>>>>>>> bf43a2d8074be319d22b9f9093bbf0fcfff833a6
   };
 
   const removeAdditionalImage = (index) => {
@@ -63,7 +74,10 @@ export const UploadPage = ({
 
     onStartAnalysis({
       image: selectedImage,
+<<<<<<< HEAD
       additionalImages,
+=======
+>>>>>>> bf43a2d8074be319d22b9f9093bbf0fcfff833a6
       commodity,
       district,
       market,
@@ -267,6 +281,7 @@ export const UploadPage = ({
                 <input
                   type="file"
                   onChange={handleAddMoreImage}
+<<<<<<< HEAD
                   accept="image/png,image/jpeg,image/webp"
                   multiple
                   disabled={additionalImages.length >= 4}
@@ -279,6 +294,15 @@ export const UploadPage = ({
                 <p className="mt-1 text-center text-[11px] text-slate-500">
                   Upload up to 4 extra views of the same fruit. These help identify the fruit; the primary photo is graded.
                 </p>
+=======
+                  accept="image/*"
+                  className="hidden"
+                />
+                <div className="w-full py-3 px-4 rounded-2xl border border-dashed border-emerald-400 text-emerald-800 hover:bg-emerald-50/50 font-bold text-xs flex items-center justify-center gap-2 cursor-pointer transition shadow-2xs bg-white">
+                  <Plus className="w-4 h-4" />
+                  <span>Add Angle or Crate Closeup Photo (Optional)</span>
+                </div>
+>>>>>>> bf43a2d8074be319d22b9f9093bbf0fcfff833a6
               </label>
             </div>
 

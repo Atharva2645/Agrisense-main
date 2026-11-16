@@ -3,7 +3,10 @@ import { CheckCircle2, Loader2, Circle, Sparkles, Cpu, Scan, MapPin } from 'luci
 
 export const AnalyzingPage = ({
   image,
+<<<<<<< HEAD
   additionalImages = [],
+=======
+>>>>>>> bf43a2d8074be319d22b9f9093bbf0fcfff833a6
   commodity,
   district,
   market,
@@ -98,11 +101,14 @@ export const AnalyzingPage = ({
         // Convert image to guaranteed Base64 data URL
         const imageData = await convertToDataURL(image);
         const previewImage = await createPreviewDataURL(imageData);
+<<<<<<< HEAD
         const additionalImageData = await Promise.all(
           additionalImages.slice(0, 4).map(async (extraImage) =>
             createPreviewDataURL(await convertToDataURL(extraImage))
           )
         );
+=======
+>>>>>>> bf43a2d8074be319d22b9f9093bbf0fcfff833a6
 
         console.log('Converted image successfully');
         console.log('Final image length:', imageData.length);
@@ -116,7 +122,10 @@ export const AnalyzingPage = ({
           },
           body: JSON.stringify({
             image: imageData,
+<<<<<<< HEAD
             additionalImages: additionalImageData,
+=======
+>>>>>>> bf43a2d8074be319d22b9f9093bbf0fcfff833a6
             previewImage,
             commodity,
             district,
@@ -270,7 +279,11 @@ export const AnalyzingPage = ({
         clearInterval(progressInterval);
       }
     };
+<<<<<<< HEAD
   }, [image, additionalImages, commodity, district, market, onAnalysisComplete, onError]);
+=======
+  }, [image, commodity, district, market, onAnalysisComplete, onError]);
+>>>>>>> bf43a2d8074be319d22b9f9093bbf0fcfff833a6
 
   // SVG Circular math
   const radius = 64;

@@ -38,8 +38,12 @@ export const ResultPage = ({
       try {
         const query = new URLSearchParams({
           commodity: result?.commodity || '',
+<<<<<<< HEAD
           district: result?.district || '',
           grade: result?.grade || ''
+=======
+          district: result?.district || ''
+>>>>>>> bf43a2d8074be319d22b9f9093bbf0fcfff833a6
         });
         const response = await fetch(`/api/market-prices?${query}`, {
           signal: controller.signal
@@ -60,6 +64,7 @@ export const ResultPage = ({
 
     loadMarketData();
     return () => controller.abort();
+<<<<<<< HEAD
   }, [result?.commodity, result?.district, result?.grade]);
 
   const marketMatchesResult =
@@ -69,6 +74,15 @@ export const ResultPage = ({
   const gradePrices = marketMatchesResult ? marketData.gradePrices : null;
   const detectedGrade = ['A', 'B', 'C'].includes(result?.grade) ? result.grade : 'B';
   const gradePrice = gradePrices?.[detectedGrade] || null;
+=======
+  }, [result?.commodity, result?.district]);
+
+  const marketPrices =
+    marketData?.commodity === result?.commodity &&
+    marketData?.district === result?.district
+      ? marketData.summary
+      : null;
+>>>>>>> bf43a2d8074be319d22b9f9093bbf0fcfff833a6
   const marketReportDate = marketData?.dataDate
     ? new Date(`${marketData.dataDate}T00:00:00Z`).toLocaleDateString('en-IN', {
         day: 'numeric',
@@ -196,6 +210,7 @@ export const ResultPage = ({
             </div>
 
             {/* Shelf Life Box */}
+<<<<<<< HEAD
             <div className="pt-3 border-t border-slate-100 bg-emerald-50/60 p-3.5 rounded-2xl border border-emerald-100/80 space-y-3">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
@@ -239,6 +254,23 @@ export const ResultPage = ({
                   </p>
                 </>
               )}
+=======
+            <div className="pt-3 border-t border-slate-100 flex items-center justify-between bg-emerald-50/60 p-3.5 rounded-2xl border border-emerald-100/80">
+              <div className="flex items-center gap-2">
+                <Clock className="w-5 h-5 text-emerald-700" />
+                <div>
+                  <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block">
+                    Estimated Shelf Life
+                  </span>
+                  <span className="text-base font-black text-emerald-950 font-['Space_Grotesk']">
+                    {result?.shelfLife}
+                  </span>
+                </div>
+              </div>
+              <span className="text-[11px] font-semibold text-emerald-800 bg-white px-2.5 py-1 rounded-lg border border-emerald-200 shadow-2xs">
+                Ambient Mandi
+              </span>
+>>>>>>> bf43a2d8074be319d22b9f9093bbf0fcfff833a6
             </div>
           </div>
         </div>
@@ -256,6 +288,7 @@ export const ResultPage = ({
                 </div>
                 <div>
                   <span className="text-[11px] font-extrabold uppercase tracking-wider text-emerald-200">
+<<<<<<< HEAD
                     Grade {detectedGrade} Mandi Price Estimate
                   </span>
                   <h3 className="text-sm font-bold text-white">
@@ -266,37 +299,68 @@ export const ResultPage = ({
               <span className="text-[10px] font-black uppercase tracking-wider bg-white/15 border border-white/20 px-2.5 py-1 rounded-full">
                 Grade {detectedGrade}
               </span>
+=======
+                    Reported Mandi Prices
+                  </span>
+                  <h3 className="text-sm font-bold text-white">
+                    {result?.district} APMC Mandi Benchmark
+                  </h3>
+                </div>
+              </div>
+>>>>>>> bf43a2d8074be319d22b9f9093bbf0fcfff833a6
             </div>
 
             <div className="grid grid-cols-3 gap-3 pt-1 text-center">
               <div className="bg-white/10 backdrop-blur-md p-3 rounded-2xl border border-white/15">
                 <span className="text-[10px] text-emerald-200 font-bold uppercase tracking-wider block">
+<<<<<<< HEAD
                   Grade {detectedGrade} Low
                 </span>
                 <span className="text-xl font-black font-['Space_Grotesk']">
                   ₹{formatMarketPrice(gradePrice?.low)}/kg
+=======
+                  Minimum Reported
+                </span>
+                <span className="text-xl font-black font-['Space_Grotesk']">
+                  ₹{formatMarketPrice(marketPrices?.min)}/kg
+>>>>>>> bf43a2d8074be319d22b9f9093bbf0fcfff833a6
                 </span>
               </div>
 
               <div className="bg-white text-emerald-950 p-3 rounded-2xl shadow-md border-2 border-emerald-300">
                 <span className="text-[10px] text-emerald-800 font-black uppercase tracking-wider block">
+<<<<<<< HEAD
                   Grade {detectedGrade} Expected
                 </span>
                 <span className="text-2xl font-black font-['Space_Grotesk'] text-emerald-800">
                   ₹{formatMarketPrice(gradePrice?.typical)}/kg
+=======
+                  Modal Price
+                </span>
+                <span className="text-2xl font-black font-['Space_Grotesk'] text-emerald-800">
+                  ₹{formatMarketPrice(marketPrices?.modal)}/kg
+>>>>>>> bf43a2d8074be319d22b9f9093bbf0fcfff833a6
                 </span>
               </div>
 
               <div className="bg-white/10 backdrop-blur-md p-3 rounded-2xl border border-white/15">
                 <span className="text-[10px] text-emerald-200 font-bold uppercase tracking-wider block">
+<<<<<<< HEAD
                   Grade {detectedGrade} High
                 </span>
                 <span className="text-xl font-black font-['Space_Grotesk']">
                   ₹{formatMarketPrice(gradePrice?.high)}/kg
+=======
+                  Maximum Reported
+                </span>
+                <span className="text-xl font-black font-['Space_Grotesk']">
+                  ₹{formatMarketPrice(marketPrices?.max)}/kg
+>>>>>>> bf43a2d8074be319d22b9f9093bbf0fcfff833a6
                 </span>
               </div>
             </div>
 
+<<<<<<< HEAD
             {gradePrices && (
               <div className="grid grid-cols-3 gap-2 text-center">
                 {['A', 'B', 'C'].map((gradeKey) => {
@@ -322,14 +386,21 @@ export const ResultPage = ({
               </div>
             )}
 
+=======
+>>>>>>> bf43a2d8074be319d22b9f9093bbf0fcfff833a6
             <p className="text-xs text-emerald-100/90 font-medium" role="status" aria-live="polite">
               {marketLoading && 'Loading the latest reported mandi prices…'}
               {!marketLoading && marketError && marketError}
               {!marketLoading && !marketError && marketReportDate && (
                 <>
+<<<<<<< HEAD
                   Based on {result?.commodity} rates reported for {result?.district} on {marketReportDate}
                   {' '}(min ₹{formatMarketPrice(marketPrices?.min)} · modal ₹{formatMarketPrice(marketPrices?.modal)} · max ₹{formatMarketPrice(marketPrices?.max)} per kg).
                   {' '}Source: {marketData.source}. Grade prices are estimates derived from the reported spread, not live bids.
+=======
+                  {result?.commodity} prices reported for {result?.district} on {marketReportDate}.
+                  {' '}Source: {marketData.source}. These are not live bids or grade-specific prices.
+>>>>>>> bf43a2d8074be319d22b9f9093bbf0fcfff833a6
                 </>
               )}
               {!marketLoading && !marketError && marketData && !marketReportDate && marketData.message}
