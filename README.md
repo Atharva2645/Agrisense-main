@@ -1,313 +1,240 @@
-# Agrisense AI 🌱
+# 🌱 AgriSense AI – AI-Based Produce Quality Grading & District-Level Market Intelligence System
 
-**AI-Powered Agricultural Produce Quality Inspection and Grading System**
+**AgriSense AI** is an AI-powered agricultural web application designed to help farmers and produce sellers assess the quality of fruits and vegetables and make better selling decisions using district-level market intelligence.
 
-Agrisense AI is a web-based application designed to analyze agricultural produce images and estimate their quality using machine learning. It aims to help users assess the quality of fruits, view grading results, and access agricultural information through a simple interface.
+The system uses Artificial Intelligence, Deep Learning, and Computer Vision to identify agricultural produce, analyze visible defects, predict quality grades, estimate shelf life, and provide grade-wise market price information.
 
-## Overview
+It also compares APMC market prices across different districts and recommends potentially better markets based on expected selling value and applicable costs.
 
-Traditional fruit quality inspection often depends on manual observation, which can be time-consuming and inconsistent. Agrisense AI explores how computer vision and machine learning can make produce inspection faster and more consistent.
+## 🚀 Live Demo
 
-Users can upload or capture an image of agricultural produce, process it through the application's analysis workflow, and view the predicted quality grade and confidence score.
+🌐 **Live Application:** https://agrisense-ai-main.vercel.app/
 
-## Features
+💻 **GitHub Repository:** https://github.com/Atharva2645/Agrisense-main
 
-- **AI-Based Quality Grading:** Predicts fruit quality grades using trained machine learning models.
-- **Fruit Classification:** Includes models for apple, tomato, and dragon fruit grading.
-- **Fruit Detection:** Includes a separate fruit detection model.
-- **Image Analysis:** Supports an image-based produce analysis workflow.
-- **Analysis Results:** Displays the predicted grade, confidence score, and related prediction information.
-- **Camera Support:** Includes a camera interface for capturing produce images.
-- **Multilingual Interface:** Includes language selection and API-based translation functionality.
-- **User Interface:** Provides pages for the dashboard, authentication, upload, analysis, results, history, market prices, and profile.
-- **Backend Integration:** Connects the web application with backend services and the Python ML engine.
+## ✨ Key Features
 
-<<<<<<< HEAD
-## Technology Stack
-=======
-## How it works
+### 1. AI-Based Produce Identification
+- Identifies supported fruits and vegetables from uploaded images.
+- Uses CNN-based deep learning models and transfer learning.
+- Provides prediction confidence scores.
 
-The application uses React for the frontend, Express.js and MongoDB for the backend, and Python for the machine learning part.
+### 2. Intelligent Quality Grading
+- Analyzes visible characteristics such as colour, freshness, spots, bruises, shape, and surface defects.
+- Calculates an overall quality score.
+- Classifies agricultural produce into three quality grades:
 
-```text
-User
-  ↓
-Upload / Camera
-  ↓
-React Frontend
-  ↓
-Node.js + Express
-  ↓
-Python ML Engine
-  ↓
-Produce Detection
-  ↓
-Grade Classification
-  ↓
-Quality Score
-  ↓
-Result
-```
+| Grade | Quality |
+|---|---|
+| Grade A | High Quality |
+| Grade B | Medium Quality |
+| Grade C | Low Quality |
 
-The ML pipeline uses trained PyTorch models to process the submitted image.
+### 3. Image Validation
+- Validates uploaded images before AI processing.
+- Rejects invalid, unclear, blurry, or unsupported images.
+- Displays appropriate error messages to prevent unreliable predictions.
 
-## Machine Learning Models
+### 4. Shelf-Life Estimation
+- Estimates the expected remaining shelf life of agricultural produce.
+- Provides indicative nutritional-loss information based on produce condition and quality grade.
 
-The trained models are stored in:
+### 5. Grade-Wise Market Price Estimation
+- Uses minimum, modal, and maximum prices from the selected APMC market.
+- Calculates separate expected prices for Grade A, Grade B, and Grade C produce.
+- Displays estimated price ranges to help users understand the market value of their produce.
 
-```text
-ml/models/
-```
+### 6. District-Level Market Intelligence
+- Compares agricultural market prices across different districts and APMC markets.
+- Considers expected selling prices, transportation costs, and other applicable expenses.
+- Recommends potentially better markets based on estimated net selling value.
 
-Current models:
+### 7. User Authentication & Analysis History
+- Provides user registration and login functionality.
+- Maintains individual user analysis records.
+- Allows users to access previous produce quality assessments.
 
-| Model                       | Purpose                       |
-| --------------------------- | ----------------------------- |
-| `fruit_detection_model.pth` | Detects the supported produce |
-| `apple_grade_model.pth`     | Classifies apple quality      |
-| `tomato_grade_model.pth`    | Classifies tomato quality     |
-| `dragonfruit_grade_model.pth` | Classifies dragon fruit quality |
+### 8. Responsive Dashboard
+- Interactive and user-friendly interface.
+- Supports image uploading and camera capture.
+- Accessible through desktop and mobile browsers.
 
-The grading classes are:
+## 🛠️ Technology Stack
 
-```text
-Grade A
-Grade B
-Grade C
-```
+| Category | Technologies |
+|---|---|
+| Frontend | React.js, JavaScript |
+| Styling | Tailwind CSS |
+| HTTP Requests | Axios |
+| Backend | Node.js, Express.js |
+| AI/ML | Python, PyTorch, TorchVision |
+| Deep Learning | CNN, EfficientNet-B0, Transfer Learning |
+| Image Processing | OpenCV, NumPy |
+| Database | MongoDB |
+| Model Development | Jupyter Notebook, Hugging Face |
+| Development Tools | VS Code, Git, GitHub |
 
-The project also contains the training and testing scripts used during model development.
+## 🏗️ System Architecture
 
-## Tech Stack
->>>>>>> e071cb2 (Connect AgriSense persistence to MongoDB)
+AgriSense AI follows a three-layer architecture:
 
-### Frontend
-- React.js
-- JavaScript (JSX)
-- Vite
-- CSS
+**1. Frontend Layer**
+- Developed using React.js.
+- Handles user authentication, image uploading, camera capture, district selection, and result visualization.
+- Displays quality assessment results and market recommendations.
 
-### Backend
-<<<<<<< HEAD
-- Node.js
-- Express.js
-- REST API
-=======
+**2. Backend and AI Processing Layer**
+- Handles API requests and image validation.
+- Performs image preprocessing and feature extraction.
+- Uses deep learning models for produce identification and quality analysis.
+- Calculates quality scores, grades, shelf life, and nutritional-loss estimates.
 
-* Node.js
-* Express.js
-* MongoDB
->>>>>>> e071cb2 (Connect AgriSense persistence to MongoDB)
+**3. Data Storage and Output Layer**
+- Uses MongoDB to manage user information and analysis history.
+- Stores produce assessment records and market-related information.
+- Provides APMC market prices and cost information for market comparisons.
 
-### Machine Learning
-- Python
-- PyTorch
-- Torchvision
-- EfficientNet-B0 for fruit grading models
-- Computer vision and image classification
+## 🔄 Application Workflow
 
-### Development Tools
-- Git and GitHub
-- Visual Studio Code
-- npm
-- Python virtual environment
+1. User registers or logs into the application.
+2. User uploads an image or captures a photograph of agricultural produce.
+3. The system validates the uploaded image.
+4. OpenCV preprocesses the image through resizing, colour conversion, and normalization.
+5. The trained AI model identifies the fruit or vegetable.
+6. The system analyzes visible quality characteristics and defects.
+7. A quality score is calculated and the produce is classified into Grade A, B, or C.
+8. The system estimates shelf life and nutritional loss.
+9. Grade-wise market prices are calculated using APMC market rates.
+10. District-wise market comparisons are performed.
+11. The system recommends a potentially better market based on estimated net selling value.
+12. The final results are displayed on the dashboard and saved in analysis history.
 
-## Project Structure
+## 📊 Market Price Calculation
 
-```text
-Agrisense-AI/
-├── ml/
-│   ├── models/
-│   │   ├── apple_grade_model.pth
-│   │   ├── tomato_grade_model.pth
-│   │   ├── dragonfruit_grade_model.pth
-│   │   └── fruit_detection_model.pth
-│   ├── predict.py
-│   ├── predict_dragonfruit.py
-│   ├── train.py
-│   ├── train_tomato.py
-│   ├── train_dragonfruit.py
-│   ├── train_fruit_detector.py
-│   └── ...
-├── src/
-│   ├── components/
-│   ├── data/
-│   ├── hooks/
-│   ├── pages/
-│   ├── App.jsx
-│   ├── index.css
-│   ├── main.jsx
-│   └── types.js
-├── ml_engine.py
-├── ml_server.py
-├── server.js
-├── index.html
-├── package.json
-├── package-lock.json
-├── vite.config.js
-├── .env.example
-└── README.md
-```
+The system uses minimum, modal, and maximum APMC market prices to calculate expected prices for different quality grades.
 
-## Getting Started
+- **Grade A:** Higher expected price based on the market's price range.
+- **Grade B:** Intermediate expected price.
+- **Grade C:** Lower expected price.
 
-Follow these steps to run the project locally.
+Market recommendations consider the estimated selling value after applicable transportation and other costs.
+
+**Estimated Net Selling Value:**
+
+`Net Value = Expected Selling Price - Transportation Cost - Other Costs`
+
+## 💻 Installation and Setup
 
 ### Prerequisites
 
-Install the following software:
+Make sure the following tools are installed:
 
-- [Node.js](https://nodejs.org/) and npm
-- [Python](https://www.python.org/)
-- [Git](https://git-scm.com/)
-- A code editor such as Visual Studio Code
+- Node.js and npm
+- Python 3.x
+- MongoDB
+- Git
 
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yashsankpal2727/Agrisense-AI.git
-cd Agrisense-AI
+git clone https://github.com/Atharva2645/Agrisense-main.git
 ```
 
-### 2. Install Node.js Dependencies
+### 2. Navigate to the Project Directory
+
+```bash
+cd Agrisense-main
+```
+
+### 3. Install Frontend and Backend Dependencies
+
+Navigate to the respective frontend and backend directories and install their dependencies:
 
 ```bash
 npm install
 ```
 
-### 3. Configure Environment Variables
+### 4. Set Up Python Environment
 
-Create a local `.env` file using `.env.example` as a reference.
-
-```powershell
-Copy-Item .env.example .env
-```
-
-Open `.env` and configure the environment variables required by the application.
-
-Add your own valid API keys and configuration values where needed. Never commit your real `.env` file or expose secret keys on GitHub.
-
-### 4. Set Up the Python Environment
-
-Create and activate a virtual environment.
-
-**Windows PowerShell:**
-
-```powershell
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-```
-
-Install the Python packages required by the project. Use your project's dependency file if one is available; otherwise, install the dependencies required by the Python scripts, including the compatible PyTorch and Torchvision versions.
-
-<<<<<<< HEAD
-### 5. Start the Application
-=======
-### 4. Configure API keys and MongoDB
->>>>>>> e071cb2 (Connect AgriSense persistence to MongoDB)
-
-Check the `scripts` section of `package.json` to identify the available commands.
-
-<<<<<<< HEAD
-For a Vite development server, run:
-=======
-```env
-GEMINI_API_KEY="your-gemini-api-key"
-```
-
-You can use `.env.example` as a reference.
-
-The Gemini API is used for features such as interface translation and AI-assisted functionality. The local produce grading models do not require a Gemini API key.
-
-**Do not upload your `.env` file or API key to GitHub.**
-
-To load reported mandi prices, add your data.gov.in API key to the same `.env` file:
-
-```env
-MANDI_API_KEY="your-data-gov-in-api-key"
-```
-
-The backend requires MongoDB. For a local MongoDB server, configure:
-
-```env
-MONGODB_URI="mongodb://127.0.0.1:27017/agrisense"
-MONGODB_DB="agrisense"
-```
-
-For MongoDB Atlas, use the connection string from your cluster and ensure the application host is allowed by the cluster's network access settings. Keep database credentials private and never commit `.env`.
-
-On startup, the server creates a unique index for farmer phone numbers and an index for per-user analysis history. If the MongoDB collections are empty, existing `data/users.json` and `data/analysis-history.json` records are imported once; the JSON files are left untouched. New profiles and analysis history are written to MongoDB.
-
-The Market Price page uses the AGMARKNET "Current Daily Price of Various Commodities from Various Markets (Mandi)" dataset through the Express backend. The page checks for updates every five minutes and also has a manual refresh button; this only picks up new data when the provider publishes it. The provider reports daily prices, not live auction bids. Prices are converted from ₹/quintal to ₹/kg. The district modal card is an unweighted average of the returned market modal prices. The source grade (for example, `Local`) is not mapped to the app's produce Grade A/B/C; distance is not provided. The report-history chart only shows dates actually returned by the dataset, and may contain only one day. Restart `npm run dev` after changing `.env`.
-
-Opening mandi prices from an analysis result preselects and locks the analyzed commodity so the request only returns that commodity. The analysis grade is shown for context, but AGMARKNET does not provide the same Grade A/B/C classification, so prices are not grade-adjusted. Dragon fruit is accepted as a commodity selection; the page shows an empty-data message if the source has no matching report.
-
-### 5. Start the application
->>>>>>> e071cb2 (Connect AgriSense persistence to MongoDB)
+Create and activate a virtual environment:
 
 ```bash
-npm run dev
+python -m venv .venv
 ```
 
-If the application requires the Express backend or Python ML service to run separately, start those services using the commands and configuration defined in the project.
+For Windows:
 
-Once the development server starts, open the local URL displayed in your terminal.
+```bash
+.venv\Scripts\activate
+```
 
-## Machine Learning Models
+Install the Python dependencies:
 
-Agrisense AI includes trained PyTorch models for agricultural produce analysis.
+```bash
+pip install -r requirements.txt
+```
 
-| Model | Purpose |
+### 5. Configure Environment Variables
+
+Create the required `.env` file in the appropriate backend directory and configure database connections, authentication secrets, API URLs, and other required settings.
+
+### 6. Run the Application
+
+Start the frontend and backend using their respective development scripts.
+
+Start the Python AI processing service separately if your project configuration uses a separate AI service.
+
+**Note:** The exact directory names, environment variables, and startup commands depend on the repository's current configuration.
+
+## 🎯 Project Objectives
+
+- Automate preliminary agricultural produce quality assessment.
+- Reduce dependency on traditional manual inspection.
+- Identify supported fruits and vegetables using AI.
+- Provide consistent quality grading through computer vision.
+- Estimate grade-wise agricultural market prices.
+- Help farmers compare district-level APMC markets.
+- Support better selling and storage decisions through data-driven insights.
+
+## 🔮 Future Enhancements
+
+- Support additional fruit and vegetable categories.
+- Improve AI model performance using larger and more diverse datasets.
+- Integrate real-time APMC market price information.
+- Improve market recommendations using more accurate transportation and selling expenses.
+- Develop dedicated Android and iOS applications.
+- Introduce multilingual support for regional languages.
+- Expand agricultural market intelligence capabilities.
+
+## 👨‍💻 Project Team
+
+**Project Group:** G55  
+**Department:** Computer Science and Engineering  
+**College:** D. Y. Patil College of Engineering and Technology, Kolhapur  
+**Academic Year:** 2026–2027
+
+| Team Member | Primary Contribution |
 |---|---|
-| `apple_grade_model.pth` | Apple quality grading |
-| `tomato_grade_model.pth` | Tomato quality grading |
-| `dragonfruit_grade_model.pth` | Dragon fruit quality grading |
-| `fruit_detection_model.pth` | Fruit detection |
+| Sahil Padavale | Research and Documentation |
+| Prachi Chougale | UI and Frontend Development |
+| Atharv Bhasme | AI/ML Model, Image Processing, Produce Classification and Quality Scoring |
+| Yash Sankpal | Backend Development, APIs and Database Integration |
+| Harshad Bhalekar | Dataset Collection and Market Data |
 
-The grading models are designed to predict quality categories based on the images they receive. Prediction results depend on image quality, dataset coverage, and model performance.
+**Project Guide:** Mrs. V. P. Patil
 
-The model files are stored in `ml/models/`. The corresponding prediction and training scripts are located in the `ml/` directory.
+## ⚠️ Disclaimer
 
-## Application Workflow
+AgriSense AI provides preliminary produce quality assessments and indicative market price, shelf-life, and nutritional-loss estimates.
 
-1. Open the Agrisense AI web application.
-2. Navigate to the produce analysis section.
-3. Upload an image or use the available camera interface.
-4. Allow the application to process the image.
-5. View the predicted quality grade and confidence information.
-6. Explore other available sections, such as history and market prices.
+Actual produce quality, market prices, shelf life, and nutritional conditions may vary depending on geographical location, storage conditions, market demand, supply, and other environmental factors.
 
-The available workflow depends on the configured backend services and application environment.
+The system is intended to support agricultural decision-making and should not replace professional inspection or verified market information.
 
-## API and Backend
+## ⭐ Support
 
-The application includes an Express.js backend and Python services for machine learning integration.
+If you find this project useful, consider giving the repository a ⭐ on GitHub.
 
-- `server.js` — Node.js/Express application server.
-- `ml_server.py` — Python machine learning service.
-- `ml_engine.py` — Machine learning processing and integration logic.
-- `src/hooks/useApiTranslation.js` — Frontend translation integration.
+---
 
-API routes, request formats, environment variables, and service ports are defined in the project source code and configuration files.
-
-## Important Notes
-
-- The project is intended for agricultural produce quality assessment and experimentation.
-- Model predictions are estimates and should not be treated as guaranteed measurements of fruit quality.
-- Prediction confidence is not the same as verified grading accuracy.
-- Market prices and other external information depend on their configured data sources.
-- Do not upload API keys, passwords, private datasets, or other sensitive information to a public repository.
-
-## Future Improvements
-
-- Improve model performance with larger and more diverse datasets.
-- Extend support for additional fruits and vegetables.
-- Add more robust image quality checks.
-- Improve prediction evaluation and reporting.
-- Expand multilingual support.
-- Add deployment and automated testing workflows.
-
-
-## License
-
-A license has not yet been specified. If you intend to make this project open source, choose an appropriate license and add its file to the repository.
+**AgriSense AI – Smart Quality Assessment. Better Market Decisions. Smarter Agriculture.** 🌱
